@@ -1,22 +1,11 @@
 <template>
-<div>
-    <button v-for="(girl,index) in girls" :key="index" @click="selectGirlFun(index)">
-        {{index}}--{{girl}}
-    </button>
-    <div>您选择了【{{selectGirl}}】</div>
-</div>
+  <div>
+    {{myInfo.name}}
+  </div>
 </template>
 
 <script lang="ts">
-import {
-    defineComponent,
-    reactive,
-    toRefs,
-    onBeforeMount,
-    onMounted,
-    onBeforeUnmount,
-    onUnmounted
-} from "vue";
+import { defineComponent,reactive } from 'vue';
 
 interface VueTestOne {
     girls: string[];
@@ -24,42 +13,17 @@ interface VueTestOne {
     selectGirlFun: (index: number) => void;
 }
 export default defineComponent({
-    name: "App",
-    setup() {
-
-        // ref方式
-        // const girls = ref(['g1', 'g2', 'g3']);
-        // const selectGirl = ref('')
-        // const selectGirlFun = (index: number) => {
-        //     selectGirl.value = girls.value[index]
-        // }
-
-        // reactive方式
-        const data: VueTestOne = reactive({
-            girls: ['g1', 'g2', 'g3'],
-            selectGirl: '',
-            selectGirlFun: (index: number) => {
-                data.selectGirl = data.girls[index]
-            }
-        });
-
-        onBeforeMount(() => {
-            console.log('1 挂载前调用');
-        })
-        onMounted(() => {
-            console.log('2 挂载后调用')
-        })
-        onBeforeUnmount(() => {
-            console.log('3 组件销毁前调用')
-        })
-        onUnmounted(() => {
-            console.log('3 组件销毁后调用')
-        })
-        return {
-            ...toRefs(data)
-        }
+  name: 'App',
+  components: {
+  },
+  setup(){
+    const myInfo = reactive({
+      name:'leisuchu'
+    })
+    return {
+      myInfo
     }
-
+  },
 });
 </script>
 
